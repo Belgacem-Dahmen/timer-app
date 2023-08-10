@@ -1,30 +1,65 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <button @click="start" :disabled="isPlaying"> start Game </button>
+  <Block v-if="isPlaying" :delay="delay" @endGame="warriResult" />
+  <div >
+    <Result v-if="showResult" :score="score" />
   </div>
-  <HelloWorld msg="Vite + Vue" />
+  
+  <button v-if="isPlaying" @click="quit"> Quit Game </button>
+  
+    
+  
+
+  
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+
+
+<script>
+import Block from './components/Block.vue'
+import Result from './components/Result.vue'
+export default {
+  
+  components: {
+   Block,
+   Result
+  },
+ 
+  data() {
+    return {
+      isPlaying : false,
+      delay : null,
+      showResult:false,
+      score:null
+
+    }
+  },
+  methods: {
+      start(){
+        this.isPlaying = true
+        this.delay = 2000 + Math.random() * 5000
+        
+      },
+      quit(){
+        this.showResult = false
+        this.isPlaying = false
+      },
+      warriResult(time){
+        console.log(time)
+        this.score = time;
+        this.showResult = true;
+        
+        
+      }
+  }
+
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
+
+
+
+
+</script>
+
+
+
+
