@@ -1,5 +1,6 @@
 <template>
     <p>Reaction Time = {{ score }} Ms</p>
+    <p> {{ rank }}</p>
   </template>
   
   
@@ -10,9 +11,16 @@
     props : ['score'],
     data() {
       return {
-        
+          rank:""  
   
       }
+    },
+    mounted () {
+        if( this.score >250 ){
+            this.rank="My grandMa can do better than you .."
+        } else {
+            this.rank= "You are a Ninja!!!"
+        }
     }
   
   }
