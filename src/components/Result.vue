@@ -1,6 +1,6 @@
 <template>
     <p>Reaction Time = {{ score }} Ms</p>
-    <p> {{ rank }}</p>
+    <p class="rank"> {{ rank }}</p>
   </template>
   
   
@@ -40,6 +40,11 @@
         text-align: center;
         padding: 100px 0;
         margin: 40px 0;
+    }
+    .rank{
+        font-size: 1.4em;
+        color : #0faf87;
+        font-weight: bold;
     }
 </style>
   
